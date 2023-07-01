@@ -1,3 +1,5 @@
+import { HttpStatus } from 'http-exception-library';
+
 export default class UserController {
   #userService;
 
@@ -6,9 +8,16 @@ export default class UserController {
   }
 
   async create(request, response) {
-    await this.#userService.create({});
+    const { name, email, password, confirmPassword } = request.body;
 
-    return response.status(501).send('not implemented!');
+    const payload = await this.#userService.create({
+      name,
+      email,
+      password,
+      confirmPassword,
+    });
+
+    return response.status(HttpStatus.CREATED).json(payload);
   }
 
   async update(request, response) {
