@@ -4,10 +4,10 @@ import Factory from './userFactory.js';
 const controller = Factory.getInstance();
 const routes = Router();
 
-routes.post('/users', controller.create);
-routes.get('/users', controller.find);
-routes.get('/users', controller.findById);
-routes.put('/users/:id', controller.update);
-routes.delete('/users/:id', controller.remove);
+routes.post('/users', controller.create.bind(controller));
+routes.get('/users', controller.find.bind(controller));
+routes.get('/users', controller.findById.bind(controller));
+routes.put('/users/:id', controller.update.bind(controller));
+routes.delete('/users/:id', controller.remove.bind(controller));
 
 export default routes;
