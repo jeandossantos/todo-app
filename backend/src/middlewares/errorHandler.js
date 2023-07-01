@@ -1,5 +1,6 @@
 import { STATUS_CODES } from 'http';
 import { HttpException, HttpStatus } from 'http-exception-library';
+import { ZodError } from 'zod';
 
 export function errorHandler(error, req, res, next) {
   if (error instanceof HttpException) {
@@ -8,6 +9,12 @@ export function errorHandler(error, req, res, next) {
       statusCode: error.statusCode,
       error: error.error,
     });
+  }
+
+  console.log(error);
+
+  if (error instanceof ZodError) {
+    return res.status(HttpStatus.BAD_REQUEST).json(error);
   }
 
   return res
