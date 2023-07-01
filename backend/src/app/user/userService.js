@@ -1,3 +1,7 @@
+import * as bcrypt from 'bcrypt';
+
+import { validateRegistration } from './userValidator.js';
+
 export default class UserService {
   #userRepository;
 
@@ -6,6 +10,12 @@ export default class UserService {
   }
 
   async create(data) {
+    validateRegistration(data);
+
+    data.password = await bcrypt.hash(data.password, 12);
+
+    delete data.confirmPassword;
+
     await this.#userRepository.create(data);
   }
 
