@@ -1,5 +1,4 @@
 import winston from 'winston';
-import { join } from 'node:path';
 import { getCurrentDirname } from '../utils/getCurrentDirname.js';
 
 export function loggerError(filename) {
