@@ -1,18 +1,16 @@
 import winston from 'winston';
 import { getCurrentDirname } from '../utils/getCurrentDirname.js';
 
-export function loggerError(filename) {
+export function logger(filename) {
   const filepath = `${getCurrentDirname(import.meta.url)}/${filename}`;
 
   return winston.createLogger({
-    level: 'error', // Nível de log definido para 'error' (ou outro nível desejado)
+    level: 'info',
     format: winston.format.combine(
+      winston.format.errors({ stack: true }),
       winston.format.timestamp(),
       winston.format.json()
     ),
-    transports: [
-      new winston.transports.Console(), // Log para o console
-      new winston.transports.File({ filename: filepath }), // Log em arquivo
-    ],
+    transports: [new winston.transports.File({ filename: filepath })],
   });
 }
