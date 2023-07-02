@@ -1,6 +1,10 @@
+import { prisma } from '../../database/prisma.js';
+
 export default class UserRepository {
   async create(data) {
-    return Promise.reject('method create is not implemented!');
+    return await prisma.user.create({
+      data,
+    });
   }
 
   async update(id, data) {
