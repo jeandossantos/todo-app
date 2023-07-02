@@ -9,9 +9,11 @@ import morgan from 'morgan';
 
 import { errorHandler } from './middlewares/errorHandler.js';
 import { rootRoutes } from './rootRoutes.js';
+import { logRequest } from './middlewares/LogRequest.js';
 
 const app = express();
 
+app.use(logRequest);
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
