@@ -11,7 +11,7 @@ export default class UserService {
   async update(id, data) {
     validateUpdate({ id, ...data });
 
-    const foundUser = this.#userRepository.findById();
+    const foundUser = await this.#userRepository.findById(id);
 
     if (!foundUser) {
       throw new BadRequestException();
