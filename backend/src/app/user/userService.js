@@ -24,10 +24,6 @@ export default class UserService {
     await this.#userRepository.findById(id);
   }
 
-  async find(data) {
-    await this.#userRepository.find(data);
-  }
-
   async remove(id) {
     validateRemove({ id });
 
