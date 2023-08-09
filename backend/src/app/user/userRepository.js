@@ -8,11 +8,20 @@ export default class UserRepository {
   }
 
   async update(id, data) {
-    return Promise.reject('method update is not implemented!');
+    return await prisma.user.update({
+      where: {
+        id,
+      },
+      data,
+    });
   }
 
   async findById(id) {
-    return Promise.reject('method findById is not implemented!');
+    return await prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
   }
 
   async findByEmail(email) {

@@ -8,9 +8,14 @@ export default class UserController {
   }
 
   async update(request, response) {
-    await this.#userService.update({});
+    const { username } = request.body;
+    const { id } = request.params;
 
-    return response.status(501).send('not implemented!');
+    await this.#userService.update(id, {
+      username,
+    });
+
+    return response.status(HttpStatus.NO_CONTENT).send();
   }
 
   async findById(request, response) {
