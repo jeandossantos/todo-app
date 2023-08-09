@@ -20,7 +20,7 @@ export default class AuthService {
 
     validateLogin(data);
 
-    const foundUser = this.#userRepository.getByEmailOrUsername(email);
+    const foundUser = await this.#userRepository.findByEmail(email);
 
     if (!foundUser) {
       throw new BadRequestException(
@@ -37,11 +37,11 @@ export default class AuthService {
     }
 
     const accessToken = jwt.sign(
-      process.env.SECRET_KEY,
       {
         username: foundUser.username,
         email: foundUser.email,
       },
+      process.env.SECRET_KEY,
       {
         expiresIn: '20s',
       }

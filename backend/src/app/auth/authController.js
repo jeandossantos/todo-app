@@ -21,8 +21,11 @@ export default class AuthController {
   }
 
   async login(request, response) {
-    const { email, password } = request.data;
-    const { refreshToken, accessToken } = await this.#authService.login({});
+    const { email, password } = request.body;
+    const { refreshToken, accessToken } = await this.#authService.login({
+      email,
+      password,
+    });
 
     // Create secure cookie with refresh token
     response.cookie('jwt', refreshToken, {
