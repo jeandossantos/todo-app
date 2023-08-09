@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import { validateLogin, validateRegistration } from './authValidator.js';
+import { sendWelcomeEmailTo } from '../../utils/sendWelcomeEmail.js';
 
 export default class AuthService {
   #userRepository;
@@ -72,5 +73,7 @@ export default class AuthService {
     delete data.confirmPassword;
 
     await this.#userRepository.create(data);
+
+    sendWelcomeEmailTo(data.email);
   }
 }
