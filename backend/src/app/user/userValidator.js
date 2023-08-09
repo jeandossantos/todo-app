@@ -9,4 +9,12 @@ const validateUpdate = (data) => {
   schema.parse(data);
 };
 
-export { validateUpdate };
+const validateRemove = (data) => {
+  const schema = z.object({
+    id: z.string().uuid(),
+  });
+
+  schema.parse(data);
+};
+
+export { validateUpdate, validateRemove };

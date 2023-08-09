@@ -1,5 +1,5 @@
-import { validateUpdate } from './userValidator.js';
-import { BadRequestException } from 'http-exception-library';
+import { validateRemove, validateUpdate } from './userValidator.js';
+import { NotFoundException } from 'http-exception-library';
 
 export default class UserService {
   #userRepository;
@@ -14,7 +14,7 @@ export default class UserService {
     const foundUser = await this.#userRepository.findById(id);
 
     if (!foundUser) {
-      throw new BadRequestException();
+      throw new NotFoundException();
     }
 
     await this.#userRepository.update(id, data);
@@ -29,6 +29,14 @@ export default class UserService {
   }
 
   async remove(id) {
+    validateRemove({ id });
+
+    const foundUser = await this.#userRepository.findById(id);
+
+    if (!foundUser) {
+      throw new NotFoundException();
+    }
+
     await this.#userRepository.remove(id);
   }
 }

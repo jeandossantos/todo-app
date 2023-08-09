@@ -40,6 +40,10 @@ export default class UserRepository {
   }
 
   async remove(id) {
-    return Promise.reject('method remove is not implemented!');
+    return await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
   }
 }

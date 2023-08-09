@@ -31,8 +31,10 @@ export default class UserController {
   }
 
   async remove(request, response) {
-    await this.#userService.remove({});
+    const { id } = request.params;
 
-    return response.status(501).send('not implemented!');
+    await this.#userService.remove(id);
+
+    return response.status(HttpStatus.NO_CONTENT).send();
   }
 }

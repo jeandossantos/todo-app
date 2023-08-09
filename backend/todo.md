@@ -2,15 +2,16 @@
 
 1. **Autenticação e Registro:**
 
-   - [ ] Deve ser possível registrar uma conta com username, email, senha e confirmação de senha.
+   - [x] Deve ser possível registrar uma conta com username, email, senha e confirmação de senha.
    - [ ] Deve enviar um email de boas-vindas ao usuário recém-registrado.
-   - [ ] Deve ser possível autenticar o usuário com username e senha.
+   - [x] Deve ser possível autenticar o usuário com username e senha.
    - [ ] Deve ser possível que o usuário troque sua senha.
 
 2. **Perfil do Usuário:**
 
+   - [x] Deve ser possível que o usuário atualize suas informações.
    - [ ] Deve ser possível ao usuário trocar sua foto.
-   - [ ] Deve ser possível que o usuário exclua sua conta.
+   - [x] Deve ser possível que o usuário exclua sua conta.
 
 3. **Gerenciamento de Tarefas:**
    - [ ] Deve criar uma tarefa junto com a criação da conta.
