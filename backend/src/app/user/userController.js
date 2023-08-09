@@ -7,19 +7,6 @@ export default class UserController {
     this.#userService = userService;
   }
 
-  async create(request, response) {
-    const { name, email, password, confirmPassword } = request.body;
-
-    const payload = await this.#userService.create({
-      name,
-      email,
-      password,
-      confirmPassword,
-    });
-
-    return response.status(HttpStatus.CREATED).json(payload);
-  }
-
   async update(request, response) {
     await this.#userService.update({});
 

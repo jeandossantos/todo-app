@@ -1,6 +1,7 @@
 import * as bcrypt from 'bcrypt';
 
-import { validateRegistration } from './userValidator.js';
+import { validateUpdate } from './userValidator.js';
+import { BadRequestException } from 'http-exception-library';
 
 export default class UserService {
   #userRepository;
@@ -9,17 +10,15 @@ export default class UserService {
     this.#userRepository = userRepository;
   }
 
-  async create(data) {
-    validateRegistration(data);
-
-    data.password = await bcrypt.hash(data.password, 12);
-
-    delete data.confirmPassword;
-
-    await this.#userRepository.create(data);
-  }
-
   async update(id, data) {
+    validateUpdate({ id, ...data });
+
+    const foundUser = this.#userRepository.findById();
+
+    if (!foundUser) {
+      throw new BadRequestException();
+    }
+
     await this.#userRepository.update(id, data);
   }
 
