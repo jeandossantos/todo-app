@@ -13,6 +13,10 @@ export function errorHandler(error, req, res, next) {
       });
     }
 
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(error);
+    }
+
     if (error instanceof ZodError) {
       return res.status(HttpStatus.BAD_REQUEST).json(error);
     }
