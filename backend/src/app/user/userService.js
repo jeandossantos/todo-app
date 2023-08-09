@@ -1,5 +1,3 @@
-import * as bcrypt from 'bcrypt';
-
 import { validateUpdate } from './userValidator.js';
 import { BadRequestException } from 'http-exception-library';
 

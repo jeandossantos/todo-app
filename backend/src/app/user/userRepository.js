@@ -15,6 +15,17 @@ export default class UserRepository {
     return Promise.reject('method findById is not implemented!');
   }
 
+  async findByEmail(email) {
+    return await prisma.user.findFirst({
+      where: {
+        email: {
+          mode: 'insensitive',
+          equals: email,
+        },
+      },
+    });
+  }
+
   async find(data) {
     return Promise.reject('method find is not implemented!');
   }
