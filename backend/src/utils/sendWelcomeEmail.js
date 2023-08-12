@@ -34,7 +34,7 @@ export function sendWelcomeEmailTo(recipient) {
     (error, info) => {
       if (error) {
         logger('error.log').error(error);
-        console.error(error);
+        console.error('Error: connect ECONNREFUSED 127.0.0.1:1025');
       }
     }
   );

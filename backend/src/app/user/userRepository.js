@@ -1,9 +1,28 @@
 import { prisma } from '../../database/prisma.js';
 
 export default class UserRepository {
-  async create(data) {
+  async create({ username, email, password, githubId, googleId }) {
+    const firstTask = {
+      title: 'Fazer primeiro Login à plataforma :)',
+      description:
+        'Essa tarefa foi criado pelo plataforma ao registrar o usuário',
+      priority: 2,
+      deadline: new Date().toISOString(),
+    };
+
     return await prisma.user.create({
-      data,
+      data: {
+        username,
+        email,
+        password,
+        githubId,
+        googleId,
+        Task: {
+          create: {
+            ...firstTask,
+          },
+        },
+      },
     });
   }
 
