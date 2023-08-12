@@ -2,7 +2,7 @@ import { BadRequestException } from 'http-exception-library';
 import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-import { validateLogin, validateRegistration } from './authValidator.js';
+import { validateLogin, validateRegistration } from './validation.js';
 import { sendWelcomeEmailTo } from '../../utils/sendWelcomeEmail.js';
 
 export default class AuthService {
@@ -44,19 +44,14 @@ export default class AuthService {
       },
       process.env.SECRET_KEY,
       {
-        expiresIn: '20s',
+        expiresIn: '30s',
+        subject: foundUser.id,
       }
     );
 
-    const refreshToken = jwt.sign(
-      {
-        username: foundUser.username,
-      },
-      process.env.SECRET_KEY,
-      {
-        expiresIn: '7d',
-      }
-    );
+    const refreshToken = jwt.sign({}, process.env.SECRET_KEY, {
+      expiresIn: '7d',
+    });
 
     return {
       accessToken,

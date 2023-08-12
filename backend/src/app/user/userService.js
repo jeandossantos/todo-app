@@ -1,4 +1,4 @@
-import { validateRemove, validateUpdate } from './userValidator.js';
+import { validateRemove, validateUpdate } from './validation.js';
 import { NotFoundException } from 'http-exception-library';
 
 export default class UserService {
