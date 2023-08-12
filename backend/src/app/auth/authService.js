@@ -64,6 +64,24 @@ export default class AuthService {
 
     const SALT_OR_ROUNDS = 12;
 
+    const usernameAlreadyExists = await this.#userRepository.findByUsername(
+      data.username
+    );
+
+    if (usernameAlreadyExists) {
+      throw new BadRequestException(
+        'This username is already taken. Please choose a different one.'
+      );
+    }
+
+    const emailAlreadyExists = await this.#userRepository.findByEmail(
+      data.email
+    );
+
+    if (emailAlreadyExists) {
+      throw new BadRequestException('This e-mail is already registered.');
+    }
+
     data.password = await bcrypt.hash(data.password, SALT_OR_ROUNDS);
     delete data.confirmPassword;
 

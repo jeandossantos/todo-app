@@ -54,6 +54,17 @@ export default class UserRepository {
     });
   }
 
+  async findByUsername(username) {
+    return await prisma.user.findFirst({
+      where: {
+        username: {
+          mode: 'insensitive',
+          equals: username,
+        },
+      },
+    });
+  }
+
   async find(data) {
     return Promise.reject('method find is not implemented!');
   }

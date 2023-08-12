@@ -3,7 +3,7 @@
 1. **Autenticação e Registro:**
 
    - [x] Deve ser possível registrar uma conta com username, email, senha e confirmação de senha.
-   - [ ] Não deve ser possível registrar user com e-mail existente.
+   - [x] Não deve ser possível registrar user com e-mail e username existente.
    - [x] Deve enviar um email de boas-vindas ao usuário recém-registrado.
    - [x] Deve criar uma tarefa junto com a criação da conta.
    - [x] Deve ser possível autenticar o usuário com username e senha.
