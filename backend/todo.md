@@ -3,6 +3,7 @@
 1. **Autenticação e Registro:**
 
    - [x] Deve ser possível registrar uma conta com username, email, senha e confirmação de senha.
+   - [ ] Não deve ser possível registrar user com e-mail existente.
    - [x] Deve enviar um email de boas-vindas ao usuário recém-registrado.
    - [x] Deve criar uma tarefa junto com a criação da conta.
    - [x] Deve ser possível autenticar o usuário com username e senha.
@@ -15,7 +16,9 @@
    - [x] Deve ser possível que o usuário exclua sua conta.
 
 3. **Gerenciamento de Tarefas:**
-   - [ ] Deve ser possível que o usuário crie tarefas com os seguintes campos: id, título, descrição, prioridade, prazo, hora de criação e hora de atualização.
+   - [x] Deve ser possível que o usuário crie tarefas com os seguintes campos: {
+         id, title, description, priority, deadline, created_at, updated_at e user_id
+         }
    - [ ] Deve ser possível que o usuário veja somente suas tarefas.
    - [ ] Deve ser possível que o usuário exclua suas tarefas.
    - [ ] Deve ser possível que o usuário edite suas tarefas.
