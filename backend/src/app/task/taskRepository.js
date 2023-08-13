@@ -8,7 +8,12 @@ export default class TaskRepository {
   }
 
   async update(id, data) {
-    return Promise.reject('method update is not implemented!');
+    return await prisma.task.update({
+      where: {
+        id,
+      },
+      data,
+    });
   }
 
   async findById(id) {
