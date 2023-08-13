@@ -2,6 +2,7 @@ import {
   validateCreateTask,
   validateDeleteTask,
   validateFindTasks,
+  validateToggleTaskDone,
 } from './validation.js';
 import { ForbiddenException } from 'http-exception-library';
 export default class TaskService {
@@ -33,7 +34,7 @@ export default class TaskService {
 
   async remove(data) {
     validateDeleteTask(data);
-
+    console.log('Come over here');
     const foundTask = await this.#taskRepository.findById(data.id);
 
     if (!foundTask || foundTask.user_id !== data.user_id) {
@@ -41,5 +42,20 @@ export default class TaskService {
     }
 
     await this.#taskRepository.remove(data.id);
+  }
+
+  async toggleDone(data) {
+    validateToggleTaskDone(data);
+
+    const foundTask = await this.#taskRepository.findById(data.id);
+
+    if (!foundTask || foundTask.user_id !== data.user_id) {
+      throw new ForbiddenException();
+    }
+
+    await this.#taskRepository.toggleDone({
+      id: foundTask.id,
+      isDone: !foundTask.done,
+    });
   }
 }

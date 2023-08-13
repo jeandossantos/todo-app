@@ -17,13 +17,13 @@
 
 3. **Gerenciamento de Tarefas:**
    - [x] Deve ser possível que o usuário crie tarefas com os seguintes campos: {
-         id, title, description, priority, deadline, created_at, updated_at e user_id
+         id, title, description, priority, deadline, done, created_at, updated_at e user_id
          }
    - [x] Deve ser possível que o usuário veja somente suas tarefas.
    - [x] Deve ser possível que o usuário exclua suas tarefas.
    - [ ] Deve ser possível que o usuário edite suas tarefas.
    - [x] Deve ser possível que o usuário filtre suas tarefas pelo título.
    - [x] Deve ser possível que o usuário filtre por página.
-   - [ ] Deve ser possível que o usuário marque suas tarefas como feitas ou não feitas.
+   - [x] Deve ser possível que o usuário marque suas tarefas como feitas ou não feitas.
 
 Essa organização separa os requisitos em três seções distintas, facilitando a compreensão e a implementação do sistema. Além disso, os requisitos foram reordenados para criar uma sequência mais lógica e clara. Lembre-se de que, ao desenvolver o sistema, você pode adicionar mais detalhes e especificações técnicas, mas esses requisitos gerais servirão como uma base sólida para o seu todo list.

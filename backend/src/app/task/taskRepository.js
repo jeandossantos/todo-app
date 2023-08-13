@@ -63,4 +63,15 @@ export default class TaskRepository {
       },
     });
   }
+
+  async toggleDone({ id, isDone }) {
+    return await prisma.task.update({
+      where: {
+        id,
+      },
+      data: {
+        done: isDone,
+      },
+    });
+  }
 }

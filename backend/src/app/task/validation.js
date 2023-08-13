@@ -45,4 +45,18 @@ const validateFindTasks = function (data) {
   schema.parse(data);
 };
 
-export { validateCreateTask, validateDeleteTask, validateFindTasks };
+const validateToggleTaskDone = function (data) {
+  const schema = z.object({
+    id: z.string().uuid(),
+    user_id: z.string().uuid(),
+  });
+
+  schema.parse(data);
+};
+
+export {
+  validateCreateTask,
+  validateDeleteTask,
+  validateFindTasks,
+  validateToggleTaskDone,
+};

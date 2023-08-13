@@ -56,4 +56,13 @@ export default class TaskController {
 
     return response.status(HttpStatus.NO_CONTENT).send();
   }
+
+  async toggleDone(request, response) {
+    const { id } = request.params;
+    const user_id = request.user_id;
+
+    await this.#taskService.toggleDone({ id, user_id });
+
+    return response.status(HttpStatus.NO_CONTENT).send();
+  }
 }
