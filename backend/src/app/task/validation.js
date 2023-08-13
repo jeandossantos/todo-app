@@ -25,4 +25,13 @@ const validateCreateTask = function (data) {
   schema.parse(data);
 };
 
-export { validateCreateTask };
+const validateDeleteTask = function (data) {
+  const schema = z.object({
+    id: z.string().uuid(),
+    user_id: z.string().uuid(),
+  });
+
+  schema.parse(data);
+};
+
+export { validateCreateTask, validateDeleteTask };

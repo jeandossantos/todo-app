@@ -1,5 +1,5 @@
-import { validateCreateTask } from './validation.js';
-
+import { validateCreateTask, validateDeleteTask } from './validation.js';
+import { ForbiddenException } from 'http-exception-library';
 export default class TaskService {
   #taskRepository;
 
@@ -25,7 +25,15 @@ export default class TaskService {
     await this.#taskRepository.find(data);
   }
 
-  async remove(id) {
-    await this.#taskRepository.remove(id);
+  async remove(data) {
+    validateDeleteTask(data);
+
+    const foundTask = await this.#taskRepository.findById(data.id);
+
+    if (!foundTask || foundTask.user_id !== data.user_id) {
+      throw new ForbiddenException();
+    }
+
+    await this.#taskRepository.remove(data.id);
   }
 }

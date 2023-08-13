@@ -12,7 +12,11 @@ export default class TaskRepository {
   }
 
   async findById(id) {
-    return Promise.reject('method findById is not implemented!');
+    return await prisma.task.findUnique({
+      where: {
+        id,
+      },
+    });
   }
 
   async find(data) {
@@ -20,6 +24,10 @@ export default class TaskRepository {
   }
 
   async remove(id) {
-    return Promise.reject('method remove is not implemented!');
+    return await prisma.task.delete({
+      where: {
+        id,
+      },
+    });
   }
 }

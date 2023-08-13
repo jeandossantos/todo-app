@@ -44,7 +44,7 @@ export default class AuthService {
       },
       process.env.SECRET_KEY,
       {
-        expiresIn: '30s',
+        expiresIn: '15m',
         subject: foundUser.id,
       }
     );

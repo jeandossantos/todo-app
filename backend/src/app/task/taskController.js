@@ -41,8 +41,11 @@ export default class TaskController {
   }
 
   async remove(request, response) {
-    await this.#taskService.remove({});
+    const { id } = request.params;
+    const user_id = request.user_id;
 
-    return response.status(501).send('not implemented!');
+    await this.#taskService.remove({ id, user_id });
+
+    return response.status(HttpStatus.NO_CONTENT).send();
   }
 }

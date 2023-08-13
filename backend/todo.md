@@ -20,7 +20,7 @@
          id, title, description, priority, deadline, created_at, updated_at e user_id
          }
    - [ ] Deve ser possível que o usuário veja somente suas tarefas.
-   - [ ] Deve ser possível que o usuário exclua suas tarefas.
+   - [x] Deve ser possível que o usuário exclua suas tarefas.
    - [ ] Deve ser possível que o usuário edite suas tarefas.
    - [ ] Deve ser possível que o usuário filtre suas tarefas.
    - [ ] Deve ser possível que o usuário marque suas tarefas como feitas ou não feitas.

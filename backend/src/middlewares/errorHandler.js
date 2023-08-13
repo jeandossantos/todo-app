@@ -13,7 +13,7 @@ export function errorHandler(error, req, res, next) {
       });
     }
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && error instanceof ZodError) {
       console.error(
         '🚀 ~ file: errorHandler.js:17 ~ errorHandler ~ error:',
         error
