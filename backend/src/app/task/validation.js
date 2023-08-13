@@ -34,4 +34,15 @@ const validateDeleteTask = function (data) {
   schema.parse(data);
 };
 
-export { validateCreateTask, validateDeleteTask };
+const validateFindTasks = function (data) {
+  const schema = z.object({
+    search: z.string().optional(),
+    page: z.number(),
+    limit: z.number(),
+    user_id: z.string().uuid(),
+  });
+
+  schema.parse(data);
+};
+
+export { validateCreateTask, validateDeleteTask, validateFindTasks };

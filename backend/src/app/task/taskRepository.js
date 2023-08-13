@@ -19,8 +19,41 @@ export default class TaskRepository {
     });
   }
 
-  async find(data) {
-    return Promise.reject('method find is not implemented!');
+  async find({ search, page, limit, user_id }) {
+    const skip = page * limit - limit;
+
+    const count = await prisma.task.count({
+      where: {
+        user_id,
+        title: {
+          startsWith: search,
+          mode: 'insensitive',
+        },
+      },
+      take: limit,
+      skip,
+    });
+
+    const tasks = await prisma.task.findMany({
+      where: {
+        user_id: user_id,
+        title: {
+          startsWith: search,
+          mode: 'insensitive',
+        },
+      },
+      orderBy: {
+        created_at: 'desc',
+      },
+      take: limit,
+      skip,
+    });
+
+    return {
+      tasks,
+      count,
+      limit,
+    };
   }
 
   async remove(id) {

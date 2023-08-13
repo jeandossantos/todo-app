@@ -35,9 +35,17 @@ export default class TaskController {
   }
 
   async find(request, response) {
-    await this.#taskService.find({});
+    const { search, page = 1, limit = 10 } = request.query;
+    const user_id = request.user_id;
 
-    return response.status(501).send('not implemented!');
+    const result = await this.#taskService.find({
+      search,
+      page: Number(page),
+      user_id,
+      limit: Number(limit),
+    });
+
+    return response.status(HttpStatus.OK).json(result);
   }
 
   async remove(request, response) {
