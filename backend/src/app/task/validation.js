@@ -6,20 +6,51 @@ const validateCreateTask = function (data) {
     title: z.string().min(2),
     description: z.string().optional(),
     priority: z.number().default(0),
-    deadline: z.string().refine(
-      (dateString) => {
-        const inputDate = new Date(dateString);
-        const currentDate = new Date();
+    deadline: z
+      .string()
+      .refine(
+        (dateString) => {
+          const inputDate = new Date(dateString);
+          const currentDate = new Date();
 
-        if (isNaN(inputDate.getTime())) return false;
+          if (isNaN(inputDate.getTime())) return false;
 
-        return inputDate > currentDate;
-      },
-      {
-        message:
-          'Deadline cannot be early than current date / deadline must be a UTC format date.',
-      }
-    ),
+          return inputDate > currentDate;
+        },
+        {
+          message:
+            'Deadline cannot be early than current date / deadline must be a UTC format date.',
+        }
+      )
+      .optional(),
+  });
+
+  schema.parse(data);
+};
+
+const validateUpdateTask = function (data) {
+  const schema = z.object({
+    title: z.string().min(2),
+    description: z.string().optional(),
+    priority: z.number().default(0),
+    done: z.boolean().default(false),
+    user_id: z.string().uuid(),
+    deadline: z
+      .string()
+      .refine(
+        (dateString) => {
+          const inputDate = new Date(dateString);
+          const currentDate = new Date();
+
+          if (isNaN(inputDate.getTime())) return false;
+
+          return true;
+        },
+        {
+          message: 'deadline must be a UTC format date.',
+        }
+      )
+      .optional(),
   });
 
   schema.parse(data);
@@ -59,4 +90,5 @@ export {
   validateDeleteTask,
   validateFindTasks,
   validateToggleTaskDone,
+  validateUpdateTask,
 };
