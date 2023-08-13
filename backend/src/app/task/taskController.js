@@ -23,9 +23,20 @@ export default class TaskController {
   }
 
   async update(request, response) {
-    await this.#taskService.update({});
+    const { title, description, priority, done, deadline } = request.body;
+    const { id } = request.params;
+    const user_id = request.user_id;
 
-    return response.status(501).send('not implemented!');
+    await this.#taskService.update(id, {
+      title,
+      description,
+      priority,
+      done,
+      deadline,
+      user_id,
+    });
+
+    return response.status(HttpStatus.NO_CONTENT).send();
   }
 
   async findById(request, response) {

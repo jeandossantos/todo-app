@@ -21,7 +21,7 @@
          }
    - [x] Deve ser possível que o usuário veja somente suas tarefas.
    - [x] Deve ser possível que o usuário exclua suas tarefas.
-   - [ ] Deve ser possível que o usuário edite suas tarefas.
+   - [x] Deve ser possível que o usuário edite suas tarefas.
    - [x] Deve ser possível que o usuário filtre suas tarefas pelo título.
    - [x] Deve ser possível que o usuário filtre por página.
    - [x] Deve ser possível que o usuário marque suas tarefas como feitas ou não feitas.
