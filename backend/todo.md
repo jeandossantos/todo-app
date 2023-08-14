@@ -12,7 +12,7 @@
 2. **Perfil do Usuário:**
 
    - [x] Deve ser possível que o usuário atualize suas informações.
-   - [ ] Deve ser possível ao usuário trocar sua foto.
+   - [x] Deve ser possível ao usuário trocar sua foto.
    - [x] Deve ser possível que o usuário exclua sua conta.
 
 3. **Gerenciamento de Tarefas:**

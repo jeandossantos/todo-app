@@ -17,4 +17,11 @@ const validateRemove = (data) => {
   schema.parse(data);
 };
 
-export { validateUpdate, validateRemove };
+const validateUpdateAvatar = (data) => {
+  const schema = z.object({
+    id: z.string().uuid(),
+    avatar_url: z.string().url(),
+  });
+};
+
+export { validateUpdate, validateRemove, validateUpdateAvatar };

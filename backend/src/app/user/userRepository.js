@@ -35,6 +35,15 @@ export default class UserRepository {
     });
   }
 
+  async updateAvatar(id, data) {
+    return await prisma.user.update({
+      where: {
+        id,
+      },
+      data,
+    });
+  }
+
   async findById(id) {
     return await prisma.user.findUnique({
       where: {

@@ -1,4 +1,8 @@
-import { validateRemove, validateUpdate } from './validation.js';
+import {
+  validateRemove,
+  validateUpdate,
+  validateUpdateAvatar,
+} from './validation.js';
 import { NotFoundException } from 'http-exception-library';
 
 export default class UserService {
@@ -22,6 +26,18 @@ export default class UserService {
 
   async findById(id) {
     await this.#userRepository.findById(id);
+  }
+
+  async updateAvatar(id, data) {
+    validateUpdateAvatar({ id, ...data });
+
+    const foundUser = await this.#userRepository.findById(id);
+
+    if (!foundUser) {
+      throw new NotFoundException();
+    }
+
+    await this.#userRepository.updateAvatar(id, data);
   }
 
   async remove(id) {
