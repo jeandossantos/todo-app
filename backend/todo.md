@@ -2,12 +2,12 @@
 
 1. **Autenticação e Registro:**
 
-   - [x] Deve ser possível registrar uma conta com username, email, senha e confirmação de senha.
+   - [x] Deve ser possível registrar uma conta com username, avatar_uurl, email, password e confirm_password.
    - [x] Não deve ser possível registrar user com e-mail e username existente.
    - [x] Deve enviar um email de boas-vindas ao usuário recém-registrado.
    - [x] Deve criar uma tarefa junto com a criação da conta.
    - [x] Deve ser possível autenticar o usuário com username e senha.
-   - [ ] Deve ser possível que o usuário troque sua senha.
+   - [x] Deve ser possível que o usuário troque sua senha.
 
 2. **Perfil do Usuário:**
 

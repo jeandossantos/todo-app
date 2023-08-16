@@ -2,8 +2,10 @@ import {
   validateRemove,
   validateUpdate,
   validateUpdateAvatar,
+  validateUpdatePassword,
 } from './validation.js';
-import { NotFoundException } from 'http-exception-library';
+import { BadRequestException, NotFoundException } from 'http-exception-library';
+import bcrypt from 'bcrypt';
 
 export default class UserService {
   #userRepository;
@@ -38,6 +40,28 @@ export default class UserService {
     }
 
     await this.#userRepository.updateAvatar(id, data);
+  }
+
+  async updatePassword(id, data) {
+    validateUpdatePassword({ id, ...data });
+
+    const foundUser = await this.#userRepository.findById(id);
+
+    if (!foundUser) {
+      throw new NotFoundException();
+    }
+
+    const isMatch = await bcrypt.compare(
+      data.currentPassword,
+      foundUser.password
+    );
+
+    if (!isMatch) throw new BadRequestException('Wrong current password.');
+
+    const SALT_OR_ROUNDS = 12;
+    const newPassword = await bcrypt.hash(data.newPassword, SALT_OR_ROUNDS);
+
+    await this.#userRepository.updatePassword(id, newPassword);
   }
 
   async remove(id) {

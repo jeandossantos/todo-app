@@ -44,6 +44,17 @@ export default class UserRepository {
     });
   }
 
+  async updatePassword(id, newPassword) {
+    return await prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        password: newPassword,
+      },
+    });
+  }
+
   async findById(id) {
     return await prisma.user.findUnique({
       where: {

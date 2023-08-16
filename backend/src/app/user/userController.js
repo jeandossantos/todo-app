@@ -20,10 +20,23 @@ export default class UserController {
 
   async updateAvatar(request, response) {
     const { avatar_url } = request.body;
-    const { id } = request.params;
+    const id = request.user_id;
 
     await this.#userService.updateAvatar(id, {
       avatar_url,
+    });
+
+    return response.status(HttpStatus.NO_CONTENT).send();
+  }
+
+  async updatePassword(request, response) {
+    const { currentPassword, newPassword, confirmNewPassword } = request.body;
+    const id = request.user_id;
+
+    await this.#userService.updatePassword(id, {
+      currentPassword,
+      newPassword,
+      confirmNewPassword,
     });
 
     return response.status(HttpStatus.NO_CONTENT).send();
